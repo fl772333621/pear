@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- 全局项目debug日志，查看系统运行状况Threshold设置info或debug -->
+	<appender name="debugLogger" class="org.apache.log4j.RollingFileAppender">
+		<!-- File: 日志文件存放路径 -->
+		<param name="File" value="logs/debug/debug.log" />
+		<!-- Append: 追加模式 -->
+		<param name="Append" value="true" />
+		<!-- Threshold: 打印日志级别 debug、info、warn、error -->
+		<param name="Threshold" value="debug" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss:SSS} %p [%t] %c | %m%n" />
+		</layout>
+	</appender>
+	<!-- 全局项目error日志，查看系统运行状况Threshold设置info或debug -->
+	<appender name="errorLogger" class="org.apache.log4j.RollingFileAppender">
+		<!-- File: 日志文件存放路径 -->
+		<param name="File" value="logs/error/error.log" />
+		<!-- Append: 追加模式 -->
+		<param name="Append" value="true" />
+		<!-- Threshold: 打印日志级别 debug、info、warn、error -->
+		<param name="Threshold" value="info" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss:SSS} %p [%t] %c | %m%n" />
+		</layout>
+	</appender>
+	<!-- 全局项目event日志，查看系统运行状况Threshold设置info或debug -->
+	<appender name="eventLogger" class="org.apache.log4j.RollingFileAppender">
+		<!-- File: 日志文件存放路径 -->
+		<param name="File" value="logs/event/event.log" />
+		<!-- Append: 追加模式 -->
+		<param name="Append" value="true" />
+		<!-- Threshold: 打印日志级别 debug、info、warn、error -->
+		<param name="Threshold" value="info" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss:SSS} %p [%t] %c | %m%n" />
+		</layout>
+	</appender>
+	<!-- 全局项目event日志，查看系统运行状况Threshold设置info或debug -->
+	<appender name="sqlLogger" class="org.apache.log4j.RollingFileAppender">
+		<!-- File: 日志文件存放路径 -->
+		<param name="File" value="logs/sql/sql.log" />
+		<!-- Append: 追加模式 -->
+		<param name="Append" value="true" />
+		<!-- Threshold: 打印日志级别 debug、info、warn、error -->
+		<param name="Threshold" value="info" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss:SSS} %p [%t] %c | %m%n" />
+		</layout>
+	</appender>
+	<!-- 根据运行环境可变成ConsoleAppender模式的 -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<!-- Threshold设置为info级别 -->
+		<param name="Threshold" value="DEBUG" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss:SSS} %4p [%t] (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 过滤掉不希望打印的第三方jar的日志 START -->
+	<category name="org.apache">
+		<priority value="WARN" />
+	</category>
+	<category name="org.apache.ibatis">
+		<priority value="DEBUG" />
+	</category>
+	<category name="org.springframework">
+		<priority value="WARN" />
+	</category>
+	<!-- 过滤掉不希望打印的第三方jar的日志 END -->
+
+	<!-- 设置用户日志 -->
+	<category name="DebugLogger">
+		<priority value="debug" />
+		<appender-ref ref="debugLogger" />
+	</category>
+	<!-- 设置用户日志 -->
+	<category name="ErrorLogger">
+		<priority value="warn" />
+		<appender-ref ref="errorLogger" />
+	</category>
+	<!-- 设置用户日志 -->
+	<category name="EventLogger">
+		<priority value="info" />
+		<appender-ref ref="eventLogger" />
+	</category>
+	<!-- 设置用户日志 -->
+	<category name="SqlLogger">
+		<priority value="info" />
+		<appender-ref ref="sqlLogger" />
+	</category>
+
+	<!-- root包括设置的appender -->
+	<root>
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</log4j:configuration>

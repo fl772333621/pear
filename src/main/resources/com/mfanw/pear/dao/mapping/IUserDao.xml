@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mfanw.pear.dao.IUserDao">
+
+	<insert id="insert" parameterType="com.mfanw.pear.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO USER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="username != null">
+				USERNAME,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+			<if test="typeFlag != null">
+				TYPEFLAG,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="address != null">
+				ADDRESS,
+			</if>
+			<if test="manager != null">
+				MANAGER,
+			</if>
+			<if test="creator != null">
+				CREATOR,
+			</if>
+			<if test="createTime != null">
+				CREATETIME,
+			</if>
+			<if test="modifier != null">
+				MODIFIER,
+			</if>
+			<if test="modifyTime != null">
+				MODIFYTIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="username != null">
+				#{username},
+			</if>
+			<if test="password != null">
+				#{password},
+			</if>
+			<if test="typeFlag != null">
+				#{typeFlag},
+			</if>
+			<if test="phone != null">
+				#{phone},
+			</if>
+			<if test="address != null">
+				#{address},
+			</if>
+			<if test="manager != null">
+				#{manager},
+			</if>
+			<if test="creator != null">
+				#{creator},
+			</if>
+			<if test="createTime != null">
+				#{createTime},
+			</if>
+			<if test="modifier != null">
+				#{modifier},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM USER WHERE ID = #{id}
+	</delete>
+
+	<update id="update" parameterType="com.mfanw.pear.entity.UserEntity">
+		update USER set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="username != null">
+				USERNAME = #{username},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password},
+			</if>
+			<if test="typeFlag != null">
+				TYPEFLAG = #{typeFlag},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address},
+			</if>
+			<if test="manager != null">
+				MANAGER = #{manager},
+			</if>
+			<if test="creator != null">
+				CREATOR = #{creator},
+			</if>
+			<if test="createTime != null">
+				CREATETIME = #{createTime},
+			</if>
+			<if test="modifier != null">
+				MODIFIER = #{modifier},
+			</if>
+			<if test="modifyTime != null">
+				MODIFYTIME = #{modifyTime},
+			</if>
+		</trim>
+		WHERE ID = #{id}
+	</update>
+
+	<select id="get" parameterType="int" resultType="com.mfanw.pear.entity.UserEntity">
+		SELECT ID, USERNAME, PASSWORD, TYPEFLAG, PHONE, ADDRESS, MANAGER, CREATOR, CREATETIME, MODIFIER, MODIFYTIME
+		FROM USER
+		WHERE ID = #{id}
+	</select>
+
+	<select id="getList" parameterType="map" resultType="com.mfanw.pear.entity.UserEntity">
+		SELECT * FROM USER
+		<where>
+			1=1
+			<if test="username != null">
+				AND USERNAME = #{username}
+			</if>
+			<if test="password != null">
+				AND PASSWORD = #{password}
+			</if>
+			<if test="typeFlag != null">
+				AND TYPEFLAG = #{typeFlag}
+			</if>
+			<if test="phone != null">
+				AND PHONE = #{phone}
+			</if>
+			<if test="address != null">
+				AND ADDRESS = #{address}
+			</if>
+			<if test="manager != null">
+				AND MANAGER = #{manager}
+			</if>
+			<if test="creator != null">
+				AND CREATOR = #{creator}
+			</if>
+			<if test="createTime != null">
+				AND CREATETIME = #{createTime}
+			</if>
+			<if test="modifier != null">
+				AND MODIFIER = #{modifier}
+			</if>
+			<if test="modifyTime != null">
+				AND MODIFYTIME = #{modifyTime}
+			</if>
+		</where>
+	</select>
+</mapper>
